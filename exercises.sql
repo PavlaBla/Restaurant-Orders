@@ -1,3 +1,4 @@
+-- Objective 1
 -- 1. View the menu items table:
 SELECT *
 FROM restaurant_db.menu_items;
@@ -26,3 +27,32 @@ ORDER BY price DESC;
 SELECT category, COUNT (menu_item_id) AS item_count, ROUND (AVG (price), 2) as average_price
 FROM restaurant_db.menu_items
 GROUP BY category
+
+-- Objective 2
+-- 1. What is the date range of order_details table:
+SELECT MIN (order_date), MAX (order_date)
+FROM restaurant_db.order_details;
+
+-- 2. How many orders were made within this date range:
+SELECT COUNT(DISTINCT order_id) AS Orders_Made
+FROM restaurant_db.order_details;
+
+-- 3. How many items were ordered:
+SELECT COUNT (*) as Items_ordered
+FROM restaurant_db.order_details;
+
+-- 4. Which order had the most number of items
+SELECT TOP 1 WITH TIES order_id, COUNT (item_id)
+FROM restaurant_db.order_details
+GROUP BY order_id
+ORDER BY COUNT (item_id) DESC;
+
+-- 5. How many orders had more then 12 items ordered:
+SELECT COUNT (*)
+FROM (
+    SELECT COUNT(order_id) AS num_orders
+    FROM restaurant_db.order_details
+    GROUP BY order_id
+    HAVING COUNT (item_id) > 12
+)AS subquery;
+
