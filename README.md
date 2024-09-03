@@ -1,0 +1,1 @@
+For a practice project from Maven Analytics I had to create a new Azure database and change the syntax which was originally used in the exercise. The aim is to practice work with SQL and answer some questions about the restaurant business.
