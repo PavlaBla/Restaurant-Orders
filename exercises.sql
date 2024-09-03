@@ -22,7 +22,7 @@ FROM restaurant_db.menu_items
 WHERE category = N'Italian'
 ORDER BY price DESC;
 
--- 6. How many dishes are in each cathegory:
-SELECT category, COUNT (menu_item_id)
+-- 6. How many dishes are in each cathegory, what is the average price in each category:
+SELECT category, COUNT (menu_item_id) AS item_count, ROUND (AVG (price), 2) as average_price
 FROM restaurant_db.menu_items
 GROUP BY category
